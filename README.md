@@ -1,35 +1,42 @@
 # AndroidLauncher Product v1.0
 
-A modern Android launcher shell built with Kotlin + Jetpack Compose.
+GitHub-ready Android launcher project using Kotlin, Jetpack Compose, Material 3 and Android 17 (API 37).
 
-## Product features
-- Real installed-app discovery through PackageManager
-- Real app launching
-- App search
-- Adaptive app grid
-- Live clock/date
-- Default Home/launcher role request
-- System settings shortcuts
-- Edge-to-edge Compose UI
-- Material 3 surfaces and original translucent/glass-inspired styling
-- Dark/light system theme
-- Release minification and resource shrinking
-- GitHub Actions build workflow
+## Upload to GitHub
 
-## Build requirements
-- Android Studio Quail 4 (or a compatible newer/older supported Studio)
-- JDK 17
-- Android SDK API 37
-- Gradle 9.6 / Android Gradle Plugin 9.4.0
+**Important:** upload the *contents of this folder* to the root of your repository, not this folder itself.
 
-Build:
-`./gradlew assembleDebug`
+The repository root should immediately contain:
 
-Release:
-`./gradlew assembleRelease`
+- `.github/`
+- `app/`
+- `gradle/`
+- `build.gradle.kts`
+- `settings.gradle.kts`
+- `gradle.properties`
 
-## Important Android policy note
-QUERY_ALL_PACKAGES is declared because a launcher needs to discover launchable apps. Google Play distribution has package-visibility policy requirements; review the current Play policy before publishing.
+## GitHub Actions
 
-## Design
-The design uses premium mobile patterns—large rounded surfaces, translucency, adaptive spacing and gesture-friendly controls—but is not an exact copy of Apple's proprietary interface.
+The included `.github/workflows/android-build.yml`:
+1. checks out the repository
+2. installs JDK 17
+3. installs Android SDK 37
+4. installs Gradle 9.6
+5. builds debug and release APKs
+6. uploads both APKs as an artifact
+
+It deliberately uses the installed Gradle command rather than requiring `gradlew`, so a missing Gradle wrapper cannot cause the earlier failure.
+
+## Local build
+
+Use JDK 17 and Android SDK 37:
+
+`gradle assembleDebug`
+
+`gradle assembleRelease`
+
+## Product shell
+
+Includes real installed-app discovery/launching, app search, adaptive grid, launcher settings shortcuts, modern Compose UI, light/dark theme, and a launcher-friendly manifest.
+
+This is an original Android implementation inspired by premium mobile interaction patterns, not a 1:1 copy of proprietary Apple UI.
